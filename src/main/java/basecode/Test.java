@@ -15,7 +15,7 @@ public class Test {
 /*
         server.createContext("/test", new MyHandler());
         server.createContext("/another", new AnotherMyHandler());
- */
+*/
 
         /**
          * itt kezdődik az assignment
