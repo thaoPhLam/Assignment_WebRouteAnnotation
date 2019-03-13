@@ -17,7 +17,8 @@ public class Routes implements HttpHandler {
         os.close();
         return response;
     }
-
+/*
+//TODO: csináljak külön osztályt az egyes route-oknak?
     @WebRoute(path = "/another")
     public String test2(HttpExchange t) throws IOException {
         String response = "This is ANOTHER response";
@@ -27,9 +28,9 @@ public class Routes implements HttpHandler {
         os.close();
         return response;
     }
-
+*/
     public void handle(HttpExchange httpExchange) throws IOException {
-        //test1(httpExchange);
-        test2(httpExchange);
+        test1(httpExchange);
+        //test2(httpExchange);
     }
 }
