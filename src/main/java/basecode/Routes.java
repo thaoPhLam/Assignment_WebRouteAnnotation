@@ -18,7 +18,7 @@ public class Routes implements HttpHandler {
         return response;
     }
 /*
-//TODO: csináljak külön osztályt az egyes route-oknak?
+TODO: csináljak külön osztályt az egyes route-oknak?
     @WebRoute(path = "/another")
     public String test2(HttpExchange t) throws IOException {
         String response = "This is ANOTHER response";
@@ -27,6 +27,19 @@ public class Routes implements HttpHandler {
         os.write(response.getBytes());
         os.close();
         return response;
+    }
+*/
+
+/*
+TODO: Extra features
+    @WebRoute(method = WebRoute.Method.POST, path = "/users")
+    public String onTest() {
+
+    }
+
+    @WebRoute(path = "/user/<userName>")
+    public String onTest(String userName) {
+
     }
 */
     public void handle(HttpExchange httpExchange) throws IOException {
