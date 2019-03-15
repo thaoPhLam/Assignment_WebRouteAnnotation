@@ -8,14 +8,12 @@ public class Routes {
         String response = "This is the response";
         return response;
     }
-/*
-TODO: csináljak külön osztályt az egyes route-oknak?
+
     @WebRoute(path = "/another")
     public String test2() {
         String response = "This is ANOTHER response";
         return response;
     }
-*/
 
 /*
 TODO: Extra features
