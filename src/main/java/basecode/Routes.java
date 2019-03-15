@@ -15,13 +15,13 @@ public class Routes {
         return response;
     }
 
-/*
-TODO: Extra features
     @WebRoute(method = WebRoute.Method.POST, path = "/users")
     public String onTest() {
-
+        String response = "This is a POST response";
+        return response;
     }
-
+/*
+TODO: Extra features
     @WebRoute(path = "/user/<userName>")
     public String onTest(String userName) {
 
