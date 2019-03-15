@@ -22,8 +22,7 @@ public class Test {
                 Annotation annotation = method.getAnnotation(WebRoute.class);
                 WebRoute webRoute = (WebRoute) annotation;
 
-                server.createContext(webRoute.path(), new Routes());
-
+                server.createContext(webRoute.path(), new Handler((String) method.invoke(Routes.class.newInstance(), null)));
             }
         }
 
