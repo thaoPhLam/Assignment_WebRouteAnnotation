@@ -1,22 +1,31 @@
 package basecode;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import annotation.WebRoute;
+import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.InetSocketAddress;
 
-public class WebServer implements HttpHandler {
-    private String response;
+public class WebServer {
+    private HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
-    public WebServer(String response) {
-        this.response = response;
+    public WebServer() throws IOException {
     }
 
-    public void handle(HttpExchange t) throws IOException {
-        t.sendResponseHeaders(200, response.length());
-        OutputStream os = t.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+    public void processRoute() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        for (Method method : Routes.class.getMethods()) {
+            if (method.isAnnotationPresent(WebRoute.class)) {
+                Annotation annotation = method.getAnnotation(WebRoute.class);
+                WebRoute webRoute = (WebRoute) annotation;
+
+                server.createContext(webRoute.path(), new Handler((String) method.invoke(Routes.class.newInstance())));
+            }
+        }
+
+        server.setExecutor(null); // creates a default executor
+        server.start();
     }
 }
